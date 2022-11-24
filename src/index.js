@@ -1,17 +1,28 @@
+import { displayData } from "../components/displayData/displayData";
+import { displayError } from "../components/displayError/displayError";
 import { Weather } from "../components/Weather/Weather";
 
 const searchForm = document.querySelector(".search");
 
-Weather("Moscow").then((weather) => {
-  console.log(weather);
-});
+Weather("Moscow")
+  .then((weather) => {
+    console.log(weather);
+    document.querySelector(".error")?.classList.add("disabled");
+    document.querySelector(".disabled")?.classList.remove("disabled");
+    displayData(weather, document.querySelector(".content"));
+  })
+  .catch((error) => displayError(error));
 
 searchForm.addEventListener("submit", (e) => {
   const searchInput = searchForm.querySelector("input");
   Weather(searchInput.value)
     .then((weather) => {
       console.log(weather);
+      document.querySelector(".error")?.classList.add("disabled");
+      document.querySelector(".disabled")?.classList.remove("disabled");
+      displayData(weather, document.querySelector(".content"));
+      searchInput.value = "";
     })
-    .catch((error) => console.log(error));
+    .catch((error) => displayError(error));
   e.preventDefault();
 });
