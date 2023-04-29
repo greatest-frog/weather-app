@@ -1,5 +1,5 @@
 export const displayError = (error) => {
-  if (error.message == "Failed to fetch") {
+  if (error.message === "Failed to fetch") {
     document.querySelector(".content")?.classList.add("disabled");
     document.querySelector(".error_no-page")?.classList.add("disabled");
     document
