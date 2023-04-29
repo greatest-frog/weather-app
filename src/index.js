@@ -6,9 +6,8 @@ const searchForm = document.querySelector(".search");
 
 Weather("Moscow")
   .then((weather) => {
-    console.log(weather);
     document.querySelector(".error")?.classList.add("disabled");
-    document.querySelector(".disabled")?.classList.remove("disabled");
+    document.querySelector(".content")?.classList.remove("disabled");
     displayData(weather, document.querySelector(".content"));
   })
   .catch((error) => displayError(error));
@@ -19,7 +18,7 @@ searchForm.addEventListener("submit", (e) => {
     .then((weather) => {
       console.log(weather);
       document.querySelector(".error")?.classList.add("disabled");
-      document.querySelector(".disabled")?.classList.remove("disabled");
+      document.querySelector(".content")?.classList.remove("disabled");
       displayData(weather, document.querySelector(".content"));
       searchInput.value = "";
     })
